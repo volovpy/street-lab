@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>STREET LAB — 律动 · 表达 · 点燃</title>
+  <meta name="description" content="Street Lab — 你的街舞文化入口。探索 Breaking、Popping、Locking、HipHop、Waacking、Krump。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & VARIABLES ========== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #111111;
+      --white: #ffffff;
+      --red: #C84B31;
+      --gray-100: #F7F7F7;
+      --gray-200: #EEEEEE;
+      --gray-400: #999999;
+      --gray-600: #666666;
+      --font-display: 'Bebas Neue', 'Impact', sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --nav-height: 80px;
+      --side-padding: 100px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ========== NAVIGATION ========== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 var(--side-padding);
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .nav.scrolled {
+      box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      width: 28px;
+      height: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(8.75px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-8.75px) rotate(-45deg);
+    }
+
+    /* Nav Links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: var(--black);
+      position: relative;
+      padding-bottom: 8px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a.active {
+      font-weight: 600;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--red);
+      border-radius: 1px;
+    }
+
+    .nav-links a:hover {
+      color: var(--red);
+    }
+
+    /* Social Icons */
+    .nav-social {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s;
+    }
+
+    .nav-social a:hover {
+      transform: scale(1.15);
+    }
+
+    .nav-social svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--black);
+      transition: fill 0.2s;
+    }
+
+    .nav-social a:hover svg {
+      fill: var(--red);
+    }
+
+    /* ========== HERO SECTION ========== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 700px;
+      max-height: 900px;
+      display: flex;
+      margin-top: var(--nav-height);
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: relative;
+      width: 60%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    /* White fade overlay on right side of image */
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 200px;
+      background: linear-gradient(to right, transparent, var(--white));
+      pointer-events: none;
+    }
+
+    /* White fade on bottom */
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--white));
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-brand {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding-left: 80px;
+      padding-right: var(--side-padding);
+      background: var(--white);
+    }
+
+    .hero-logo {
+      font-family: var(--font-display);
+      line-height: 0.88;
+      color: var(--black);
+    }
+
+    .hero-logo .line1 {
+      font-size: clamp(80px, 10vw, 180px);
+      letter-spacing: -2px;
+    }
+
+    .hero-logo .line2 {
+      font-size: clamp(70px, 9vw, 160px);
+      letter-spacing: -1px;
+    }
+
+    .hero-tagline {
+      margin-top: 28px;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 3px;
+      color: var(--black);
+    }
+
+    .hero-tagline .dot {
+      display: inline-block;
+      color: var(--red);
+      margin: 0 8px;
+      font-size: 16px;
+    }
+
+    /* ========== STYLES SECTION ========== */
+    .styles-section {
+      padding: 80px var(--side-padding) 100px;
+    }
+
+    .styles-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 50px;
+    }
+
+    .styles-header h2 {
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: var(--black);
+    }
+
+    .styles-header p {
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: var(--gray-600);
+    }
+
+    /* Card Grid */
+    .styles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .style-card {
+      display: flex;
+      background: var(--gray-100);
+      border-radius: 16px;
+      padding: 44px;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 280px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.35s ease;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    }
+
+    .style-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .style-card-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .style-card h3 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 3.5vw, 44px);
+      letter-spacing: 2px;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .style-card-arrow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .style-card-arrow .arrow-icon {
+      font-size: 28px;
+      color: var(--black);
+      transition: transform 0.3s ease;
+    }
+
+    .style-card:hover .arrow-icon {
+      transform: translateX(6px);
+    }
+
+    .style-card-arrow .red-line {
+      width: 50px;
+      height: 2px;
+      background: var(--red);
+      border-radius: 1px;
+    }
+
+    .style-card-image {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 180px;
+      height: 180px;
+      opacity: 0.9;
+      transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .style-card:hover .style-card-image {
+      transform: translateY(-50%) scale(1.05);
+      opacity: 1;
+    }
+
+    .style-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: grayscale(100%) contrast(1.2);
+      mix-blend-mode: multiply;
+    }
+
+    /* ========== ABOUT SECTION ========== */
+    .about-section {
+      padding: 100px var(--side-padding);
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .about-inner {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 64px);
+      letter-spacing: 3px;
+      margin-bottom: 28px;
+    }
+
+    .about-text p {
+      font-size: 16px;
+      line-height: 1.9;
+      color: var(--gray-400);
+      margin-bottom: 16px;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 48px;
+      margin-top: 40px;
+    }
+
+    .about-stat {
+      text-align: center;
+    }
+
+    .about-stat .num {
+      font-family: var(--font-display);
+      font-size: 48px;
+      color: var(--red);
+      letter-spacing: 2px;
+    }
+
+    .about-stat .label {
+      font-size: 13px;
+      color: var(--gray-400);
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* ========== COURSES SECTION ========== */
+    .courses-section {
+      padding: 100px var(--side-padding);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: 48px;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      font-size: 15px;
+      color: var(--gray-600);
+      letter-spacing: 1px;
+    }
+
+    .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .course-card {
+      display: block;
+      background: var(--gray-100);
+      border-radius: 16px;
+      padding: 36px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+
+    .course-card .course-tag {
+      display: inline-block;
+      background: var(--red);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .course-card h3 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .course-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-600);
+      margin-bottom: 20px;
+    }
+
+    .course-card .course-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 16px;
+      border-top: 1px solid var(--gray-200);
+      font-size: 13px;
+      color: var(--gray-400);
+    }
+
+    /* ========== EVENTS SECTION ========== */
+    .events-section {
+      padding: 100px var(--side-padding);
+      background: var(--gray-100);
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .event-card {
+      display: flex;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px;
+      gap: 24px;
+      align-items: flex-start;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .event-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+
+    .event-date {
+      flex-shrink: 0;
+      width: 64px;
+      height: 72px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .event-date .month {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--red);
+    }
+
+    .event-date .day {
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .event-info h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    .event-info p {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
+    .event-info .event-tag {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--red);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* ========== CONTACT SECTION ========== */
+    .contact-section {
+      padding: 100px var(--side-padding);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .contact-card {
+      display: block;
+      text-align: center;
+      padding: 40px 28px;
+      border: 2px solid var(--gray-200);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .contact-card:hover {
+      border-color: var(--red);
+      transform: translateY(-3px);
+    }
+
+    .contact-card .icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .contact-card h3 {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.6;
+    }
+
+    .contact-card a {
+      color: var(--red);
+      font-weight: 500;
+    }
+
+    /* ========== BACK TO TOP ========== */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 48px;
+      height: 48px;
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      font-size: 20px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: var(--red);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    .footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 80px var(--side-padding) 50px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 60px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: 48px;
+      letter-spacing: 2px;
+      line-height: 1;
+    }
+
+    .footer-brand span {
+      display: block;
+      font-size: 14px;
+      font-family: var(--font-body);
+      font-weight: 300;
+      letter-spacing: 3px;
+      margin-top: 12px;
+      color: var(--gray-400);
+    }
+
+    .footer-columns {
+      display: flex;
+      gap: 80px;
+    }
+
+    .footer-column h4 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+      color: var(--white);
+    }
+
+    .footer-column a {
+      display: block;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--gray-400);
+      margin-bottom: 14px;
+      transition: color 0.2s;
+      letter-spacing: 0.5px;
+    }
+
+    .footer-column a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--gray-400);
+      letter-spacing: 1px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 50%;
+      transition: all 0.2s;
+    }
+
+    .footer-social a:hover {
+      border-color: var(--red);
+      background: var(--red);
+    }
+
+    .footer-social svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--white);
+    }
+
+    /* ========== MOBILE OVERLAY ========== */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--white);
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 36px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu a {
+      font-family: var(--font-body);
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--black);
+      letter-spacing: 2px;
+      transition: color 0.2s;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--red);
+    }
+
+    /* ========== ANIMATIONS ========== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-in {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .animate-in.visible {
+      animation: fadeInUp 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1200px) {
+      :root {
+        --side-padding: 60px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      :root {
+        --side-padding: 40px;
+      }
+
+      .styles-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+      }
+
+      .hero-brand {
+        padding-left: 40px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .about-inner {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .courses-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      :root {
+        --side-padding: 24px;
+        --nav-height: 64px;
+      }
+
+      .hero {
+        flex-direction: column;
+        height: auto;
+        min-height: auto;
+        max-height: none;
+      }
+
+      .hero-image {
+        width: 100%;
+        height: 380px;
+      }
+
+      .hero-image::after {
+        width: 100px;
+        background: linear-gradient(to right, transparent, var(--white));
+      }
+
+      .hero-image::before {
+        height: 80px;
+      }
+
+      .hero-brand {
+        padding: 48px 24px 60px;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-logo .line1 {
+        font-size: 72px;
+      }
+
+      .hero-logo .line2 {
+        font-size: 64px;
+      }
+
+      .hero-tagline {
+        font-size: 12px;
+        letter-spacing: 4px;
+      }
+
+      .styles-section {
+        padding: 60px 24px 80px;
+      }
+
+      .styles-header {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 36px;
+      }
+
+      .styles-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .style-card {
+        min-height: 200px;
+        padding: 32px;
+      }
+
+      .style-card-image {
+        width: 140px;
+        height: 140px;
+        right: 16px;
+      }
+
+      .footer {
+        padding: 60px 24px 40px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .footer-columns {
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .about-section {
+        padding: 60px 24px;
+      }
+
+      .about-inner {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .about-stats {
+        gap: 32px;
+        justify-content: center;
+      }
+
+      .courses-section {
+        padding: 60px 24px;
+      }
+
+      .courses-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .events-section {
+        padding: 60px 24px;
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-section {
+        padding: 60px 24px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-social {
+        gap: 20px;
+      }
+
+      .style-card-image {
+        width: 110px;
+        height: 110px;
+        right: 12px;
+      }
+
+      .style-card h3 {
+        font-size: 32px;
+      }
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--gray-100);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gray-400);
+      border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--gray-600);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav" id="nav">
+    <div class="nav-left">
+      <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="nav-links">
+        <a href="#" class="active">首页</a>
+        <a href="#about">关于我们</a>
+        <a href="#courses">课程</a>
+        <a href="#events">活动</a>
+        <a href="#contact">联系</a>
+      </div>
+    </div>
+    <div class="nav-social">
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ========== MOBILE MENU OVERLAY ========== -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">关于我们</a>
+    <a href="#courses">课程</a>
+    <a href="#events">活动</a>
+    <a href="#contact">联系</a>
+  </div>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero">
+    <div class="hero-image">
+      <img src="images/hero.png" alt="城市街头舞者群像" loading="eager">
+    </div>
+    <div class="hero-brand">
+      <div class="hero-logo">
+        <div class="line1">STREET</div>
+        <div class="line2">LAB</div>
+      </div>
+      <p class="hero-tagline">律动 <span class="dot">•</span> 表达 <span class="dot">•</span> 点燃</p>
+    </div>
+  </section>
+
+  <!-- ========== DANCE STYLES SECTION ========== -->
+  <section class="styles-section">
+    <div class="styles-header">
+      <h2>探索舞种风格</h2>
+      <p>找到你的风格，融入街舞文化。</p>
+    </div>
+    <div class="styles-grid">
+      <!-- Breaking -->
+      <a href="breaking.html" class="style-card animate-in">
+        <div class="style-card-content">
+          <h3>BREAKING</h3>
+          <div class="style-card-arrow">
+            <span class="arrow-icon">→</span>
+            <span class="red-line"></span>
+          </div>
+        </div>
+        <div class="style-card-image">
+          <img src="images/breaking.png" alt="Breaking dancer illustration">
+        </div>
+      </a>
+
+      <!-- Popping -->
+      <a href="popping.html" class="style-card animate-in">
+        <div class="style-card-content">
+          <h3>POPPING</h3>
+          <div class="style-card-arrow">
+            <span class="arrow-icon">→</span>
+            <span class="red-line"></span>
+          </div>
+        </div>
+        <div class="style-card-image">
+          <img src="images/popping.png" alt="Popping dancer illustration">
+        </div>
+      </a>
+
+      <!-- Locking -->
+      <a href="locking.html" class="style-card animate-in">
+        <div class="style-card-content">
+          <h3>LOCKING</h3>
+          <div class="style-card-arrow">
+            <span class="arrow-icon">→</span>
+            <span class="red-line"></span>
+          </div>
+        </div>
+        <div class="style-card-image">
+          <img src="images/locking.png" alt="Locking dancer illustration">
+        </div>
+      </a>
+
+      <!-- HipHop -->
+      <a href="hiphop.html" class="style-card animate-in">
+        <div class="style-card-content">
+          <h3>HIP&thinsp;HOP</h3>
+          <div class="style-card-arrow">
+            <span class="arrow-icon">→</span>
+            <span class="red-line"></span>
+          </div>
+        </div>
+        <div class="style-card-image">
+          <img src="images/hiphop.png" alt="HipHop dancer illustration">
+        </div>
+      </a>
+
+      <!-- Waacking -->
+      <a href="waacking.html" class="style-card animate-in">
+        <div class="style-card-content">
+          <h3>WAACKING</h3>
+          <div class="style-card-arrow">
+            <span class="arrow-icon">→</span>
+            <span class="red-line"></span>
+          </div>
+        </div>
+        <div class="style-card-image">
+          <img src="images/waacking.png" alt="Waacking dancer illustration">
+        </div>
+      </a>
+
+      <!-- Krump -->
+      <a href="krump.html" class="style-card animate-in">
+        <div class="style-card-content">
+          <h3>KRUMP</h3>
+          <div class="style-card-arrow">
+            <span class="arrow-icon">→</span>
+            <span class="red-line"></span>
+          </div>
+        </div>
+        <div class="style-card-image">
+          <img src="images/krump.png" alt="Krump dancer illustration">
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="about-section" id="about">
+    <div class="about-inner">
+      <div class="about-text animate-in">
+        <h2>STREET LAB</h2>
+        <p>我们相信街舞不仅是一种舞蹈，更是一种生活态度。Street Lab 致力于为每一位热爱街舞的人提供最专业、最纯粹的学习空间。</p>
+        <p>无论你是零基础的初学者，还是寻求突破的进阶舞者，这里都有属于你的舞台。</p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="num">6+</div>
+            <div class="label">舞种类别</div>
+          </div>
+          <div class="about-stat">
+            <div class="num">50+</div>
+            <div class="label">经典动作</div>
+          </div>
+          <div class="about-stat">
+            <div class="num">100+</div>
+            <div class="label">代表舞者</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text animate-in">
+        <p style="font-size:18px; line-height:1.8; color:var(--gray-400);">「街舞是身体的语言，节奏是我们的母语。」</p>
+        <p style="font-size:14px; color:var(--gray-400); margin-top:16px;">从洛杉矶到纽约，从首尔到东京——Street Lab 汇聚全球六大核心舞种，带你从根源理解每一寸律动。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== COURSES SECTION ========== -->
+  <section class="courses-section" id="courses">
+    <div class="section-header animate-in">
+      <h2>课程体系</h2>
+      <p>从入门到进阶，系统化街舞学习路径</p>
+    </div>
+    <div class="courses-grid">
+      <a href="courses.html" class="course-card animate-in">
+        <span class="course-tag">入门</span>
+        <h3>零基础启蒙班</h3>
+        <p>适合从未接触过街舞的初学者，从最基础的律动和节奏感开始，建立对街舞的正确认知。</p>
+        <div class="course-meta">
+          <span>每周 2 节</span>
+          <span>60 分钟/节</span>
+        </div>
+      </a>
+      <a href="courses.html" class="course-card animate-in">
+        <span class="course-tag">进阶</span>
+        <h3>专项突破班</h3>
+        <p>深入单一舞种，系统学习该舞种的核心技术、经典动作和风格表达，从"会跳"到"跳好"。</p>
+        <div class="course-meta">
+          <span>每周 3 节</span>
+          <span>90 分钟/节</span>
+        </div>
+      </a>
+      <a href="courses.html" class="course-card animate-in">
+        <span class="course-tag">高级</span>
+        <h3>编舞创作班</h3>
+        <p>面向有一定基础的舞者，学习编舞思维、音乐理解和舞台表现力，打造个人风格。</p>
+        <div class="course-meta">
+          <span>每周 2 节</span>
+          <span>120 分钟/节</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== EVENTS SECTION ========== -->
+  <section class="events-section" id="events">
+    <div class="section-header animate-in">
+      <h2>近期活动</h2>
+      <p>Workshop、Battle、Jam — 保持关注，不错过每一场律动盛宴</p>
+    </div>
+    <div class="events-grid">
+      <a href="events.html" class="event-card animate-in">
+        <div class="event-date">
+          <span class="month">SEP</span>
+          <span class="day">15</span>
+        </div>
+        <div class="event-info">
+          <h3>BREAKING OPEN DAY</h3>
+          <p>免费体验 Breaking 入门课程，由资深导师亲自指导，零基础也能参加。</p>
+          <span class="event-tag">免费 · 需预约</span>
+        </div>
+      </a>
+      <a href="events.html" class="event-card animate-in">
+        <div class="event-date">
+          <span class="month">SEP</span>
+          <span class="day">22</span>
+        </div>
+        <div class="event-info">
+          <h3>POPING WORKSHOP</h3>
+          <p>特邀海外 Popping 导师，两天集训，深入 Boogaloo 和 Animation 技术。</p>
+          <span class="event-tag">限定 30 人 · ¥680</span>
+        </div>
+      </a>
+      <a href="events.html" class="event-card animate-in">
+        <div class="event-date">
+          <span class="month">OCT</span>
+          <span class="day">06</span>
+        </div>
+        <div class="event-info">
+          <h3>STREET LAB JAM VOL.3</h3>
+          <p>第三届 Street Lab 内部 Jam Session，各舞种自由 cypher，以舞会友。</p>
+          <span class="event-tag">会员免费 · 观众 ¥50</span>
+        </div>
+      </a>
+      <a href="events.html" class="event-card animate-in">
+        <div class="event-date">
+          <span class="month">OCT</span>
+          <span class="day">20</span>
+        </div>
+        <div class="event-info">
+          <h3>KRUMP INTENSIVE</h3>
+          <p>Krump 深度集训营，从基础 Chest Pop 到高级 Session，释放你的原始能量。</p>
+          <span class="event-tag">限定 20 人 · ¥880</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="contact-section" id="contact">
+    <div class="section-header animate-in">
+      <h2>联系我们</h2>
+      <p>加入 Street Lab，开启你的街舞旅程</p>
+    </div>
+    <div class="contact-grid">
+      <a href="contact.html" class="contact-card animate-in">
+        <div class="icon">📍</div>
+        <h3>工作室地址</h3>
+        <p>上海市静安区南京西路 1266 号<br>恒隆广场 B1 层</p>
+      </a>
+      <a href="contact.html" class="contact-card animate-in">
+        <div class="icon">📞</div>
+        <h3>电话咨询</h3>
+        <p>021-1234-5678<br>周一至周日 10:00-21:00</p>
+      </a>
+      <a href="contact.html" class="contact-card animate-in">
+        <div class="icon">✉️</div>
+        <h3>邮件联系</h3>
+        <p>hello@streetlab.cn<br>合作 · 媒体 · 加入我们</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        STREET LAB
+        <span>律动 · 表达 · 点燃</span>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h4>舞种分类</h4>
+          <a href="breaking.html">Breaking</a>
+          <a href="popping.html">Popping</a>
+          <a href="locking.html">Locking</a>
+          <a href="hiphop.html">Hip Hop</a>
+          <a href="waacking.html">Waacking</a>
+          <a href="krump.html">Krump</a>
+        </div>
+        <div class="footer-column">
+          <h4>工作室</h4>
+          <a href="#courses">课程</a>
+          <a href="#courses">工作坊</a>
+          <a href="#events">活动</a>
+          <a href="#courses">课程表</a>
+        </div>
+        <div class="footer-column">
+          <h4>联系我们</h4>
+          <a href="#about">关于我们</a>
+          <a href="#contact">联系方式</a>
+          <a href="#contact">加入我们</a>
+          <a href="#contact">媒体合作</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Street Lab 保留所有权利</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+        <a href="#" aria-label="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // Navigation scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Scroll animations (Intersection Observer)
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          // Stagger the animation of cards
+          const cards = document.querySelectorAll('.style-card.animate-in');
+          const cardIndex = Array.from(cards).indexOf(entry.target);
+          entry.target.style.animationDelay = `${cardIndex * 0.1}s`;
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href.startsWith('#') && href.length > 1) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // Back to top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 600);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+  <button class="back-to-top" id="backToTop" aria-label="回到顶部">↑</button>
+</body>
+</html>
