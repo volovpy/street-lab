@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUSTE DEBOUT — STREET LAB</title>
+  <meta name="description" content="JUSTE DEBOUT（JD）赛事来源、比赛形式与历届情况。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=7">
+</head>
+<body>
+  <nav class="nav" id="nav"><div class="nav-left"><div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0"><span></span><span></span><span></span></div><div class="nav-links"><a href="index.html">首页</a><a href="index.html#learn">学习建议</a><a href="index.html#comp">经典大赛</a><a href="contact.html">联系</a></div></div><div class="nav-social"><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a><a href="#" aria-label="TikTok">♪</a></div></nav>
+  <div class="mobile-menu" id="mobileMenu"><a href="index.html">首页</a><a href="index.html#learn">学习建议</a><a href="index.html#comp">经典大赛</a><a href="contact.html">联系</a></div>
+  <section class="detail-hero"><div class="detail-hero-text"><h1>JUSTE DEBOUT</h1><p class="subtitle">JD · 站立舞种的世界舞台</p><a href="index.html#comp" class="back-link">← 返回经典大赛</a></div></section>
+  <div class="detail-content">
+    <div class="detail-section animate-in"><h2>比赛来源</h2><p>Juste Debout（简称 JD）由法国舞者 Bruce Ykanji 于 2002 年在巴黎创立。“Juste Debout”意为“只站立”，赛事从一开始就将重点放在站立舞种的交流与对决上。</p><ul><li><strong>发源地：</strong>法国巴黎</li><li><strong>创办时间：</strong>2002 年</li><li><strong>文化背景：</strong>法国街舞社群与国际舞者交流</li></ul></div>
+    <div class="detail-section animate-in"><h2>具体情况</h2><p>JD 以舞者搭档之间的 2v2 Battle 为核心，强调音乐理解、即兴表达、搭档配合和个人风格。赛事通常设有 Popping、Locking、Hip Hop、House 等舞种类别，并通过地区预选进入世界总决赛。</p><ul><li><strong>核心舞种：</strong>Popping、Locking、Hip Hop、House、Experimental</li><li><strong>赛事形式：</strong>2v2 Battle、地区预选、世界总决赛</li><li><strong>评判重点：</strong>音乐性、原创性、技术、互动与团队默契</li><li><strong>代表舞者：</strong>Salah、Les Twins、Poppin DS 等</li></ul></div>
+    <div class="detail-section animate-in"><h2>历届情况</h2><p>JD 经过多年发展形成覆盖多个国家和地区的预选体系，世界总决赛持续吸引各舞种顶尖舞者。它的重要性不只在于冠军，也在于不同城市的舞者通过同一套规则建立跨文化连接。</p><ul><li><strong>赛制特点：</strong>全球预选网络连接世界总决赛</li><li><strong>发展轨迹：</strong>从巴黎本地活动成长为国际街舞品牌</li><li><strong>观看重点：</strong>关注舞者如何用音乐、空间和搭档关系完成表达</li></ul></div>
+    <div class="detail-section animate-in"><h2>其他比赛</h2><ul><li><strong>Summer Dance Forever：</strong>荷兰阿姆斯特丹的 Hip Hop 与 House 文化盛会</li><li><strong>KOD：</strong>中国代表性综合街舞赛事</li><li><strong>Red Bull BC One：</strong>国际 Breaking 1v1 赛事</li><li><strong>Battle of the Year：</strong>经典 Breaking 团队赛</li><li><strong>Freestyle Session：</strong>美国老牌 Hip Hop 与 Breaking 赛事</li><li><strong>SDK：</strong>捷克夏季街舞节庆与 Battle 活动</li></ul></div>
+  </div>
+  <footer class="footer"><div class="footer-top"><div class="footer-brand">STREET LAB<span>律动 · 表达 · 点燃</span></div><div class="footer-columns"><div class="footer-column"><h4>探索</h4><a href="index.html#comp">经典大赛</a><a href="competitions.html">赛事总览</a></div><div class="footer-column"><h4>联系</h4><a href="contact.html">联系方式</a></div></div></div><div class="footer-bottom"><p>© 2026 Street Lab 保留所有权利</p></div></footer>
+  <script>var nav=document.getElementById('nav');window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>20)});var hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');hamburger.addEventListener('click',function(){hamburger.classList.toggle('active');mobileMenu.classList.toggle('open');document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':''});mobileMenu.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){hamburger.classList.remove('active');mobileMenu.classList.remove('open');document.body.style.overflow=''})});var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.15,rootMargin:'0px 0px -50px 0px'});document.querySelectorAll('.animate-in').forEach(function(el){observer.observe(el)});</script>
+</body>
+</html>
