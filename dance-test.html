@@ -17,9 +17,9 @@
   <nav class="nav"><div class="nav-left"><div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="打开菜单" aria-expanded="false"><span></span><span></span><span></span></div><div class="nav-links"><a href="index.html">首页</a><a class="active" href="dance-test.html">舞种测试</a><a href="index.html#learn">学习建议</a><a href="index.html#comp">经典大赛</a><a href="contact.html">联系</a></div></div><div class="nav-social"><a href="#" aria-label="Instagram">◎</a><a href="#" aria-label="YouTube">▶</a><a href="#" aria-label="TikTok">♪</a></div></nav>
   <div class="mobile-menu" id="mobileMenu"><a href="index.html">首页</a><a href="dance-test.html">舞种测试</a><a href="index.html#learn">学习建议</a><a href="index.html#comp">经典大赛</a><a href="contact.html">联系</a></div>
   <main>
-    <section class="test-hero"><p class="eyebrow">STREET LAB / DANCE PROFILE</p><h1>舞种测试</h1><p>用 50 道问题认识你的舞蹈偏好。完成后，你会获得五维画像和适合优先探索的街舞方向。</p></section>
+    <section class="test-hero"><p class="eyebrow">STREET LAB / DANCE PROFILE</p><h1>舞种测试</h1><p>从你平时喜欢的音乐、视频和穿搭开始，慢慢找到适合自己的舞蹈方向。</p></section>
     <div class="test-shell">
-      <section class="test-intro" id="intro"><h2>先找到你的节奏</h2><p>测试约需 5 分钟。每题请选择最接近你第一反应的选项，不需要舞蹈基础；结果仅作学习方向参考，不会收集或上传你的答案。</p><div class="dimension-list"><div>律动与音乐感</div><div>力量与爆发</div><div>精准与控制</div><div>表演与表达</div><div>社交与编舞</div></div><button class="primary-button" id="startButton">开始测试</button></section>
+      <section class="test-intro" id="intro"><h2>先找到你的节奏</h2><p>测试约需 5 分钟。从生活里的音乐、视频和穿搭偏好开始，逐步进入舞蹈体验。请选择最接近你第一反应的选项；不需要舞蹈基础，结果仅作学习方向参考。</p><div class="dimension-list"><div>律动与音乐感</div><div>力量与爆发</div><div>精准与控制</div><div>表演与表达</div><div>社交与编舞</div></div><button class="primary-button" id="startButton">开始测试</button></section>
       <section class="quiz-panel" id="quizPanel" aria-labelledby="quizTitle"><div class="progress-head"><span id="quizTitle">第 1–5 题</span><span id="progressText">1 / 50</span></div><div class="progress-track"><span class="progress-fill" id="progressFill"></span></div><form id="quizForm"></form><p class="error" id="errorMessage" aria-live="polite"></p><div class="quiz-actions"><button class="secondary-button" id="prevButton" type="button">← 上一组</button><button class="primary-button" id="nextButton" type="button">下一组 →</button></div></section>
       <section class="result-panel" id="resultPanel" aria-live="polite"><div class="result-grid"><div><p class="eyebrow">你的五维画像</p><h2 id="resultTitle">你的舞蹈偏好</h2><p class="result-copy">这是一份偏好画像，不定义你的能力上限。先从最贴近你身体和音乐直觉的舞种开始，再慢慢拓展边界。</p><div class="score-list" id="scoreList"></div></div><div class="radar-wrap" id="radarChart"></div></div><div class="recommendations"><h3>推荐优先探索</h3><div class="recommendation-grid" id="recommendationGrid"></div></div><div class="result-actions"><button class="primary-button" id="restartButton" type="button">重新测试</button></div></section>
     </div>
@@ -34,52 +34,51 @@
       {id:'expression',label:'表演与表达',short:'表达'},
       {id:'connection',label:'社交与编舞',short:'协作'}
     ];
-    const RESPONSE_SETS=[
-      [
-        {label:'先跟着鼓点自然晃动，找到身体的律动',weights:[5,1,1,2,2]},
-        {label:'用一个有力量的大动作回应高潮',weights:[2,5,2,3,1]},
-        {label:'先卡住节奏，做一个干净的定点',weights:[2,2,5,2,1]},
-        {label:'用表情和姿态把情绪放大',weights:[2,2,2,5,2]},
-        {label:'和朋友一起设计整齐的八拍',weights:[2,1,3,3,5]}
-      ],[
-        {label:'反复听歌，先找到最想跟随的节拍',weights:[5,1,2,1,2]},
-        {label:'先练能让自己更有爆发力的部分',weights:[1,5,2,2,1]},
-        {label:'放慢速度，把每个细节练清楚',weights:[2,2,5,1,2]},
-        {label:'想象这段动作会给观众什么感受',weights:[2,2,1,5,2]},
-        {label:'找人一起排练并互相给建议',weights:[2,1,2,3,5]}
-      ],[
-        {label:'让脚步持续移动，跟着音乐走',weights:[5,2,2,2,1]},
-        {label:'挑战速度、力量或身体支撑',weights:[1,5,3,2,1]},
-        {label:'研究身体部位如何分开控制',weights:[2,2,5,2,1]},
-        {label:'加入自己鲜明的性格和情绪',weights:[2,2,1,5,2]},
-        {label:'把动作编成适合大家一起跳的组合',weights:[2,1,3,3,5]}
-      ],[
-        {label:'先听音乐里鼓、贝斯和人声的变化',weights:[5,1,2,1,2]},
-        {label:'先确认身体能否完成高强度动作',weights:[1,5,2,2,1]},
-        {label:'先观察线条、角度和动作的准确度',weights:[2,2,5,2,1]},
-        {label:'先想好怎样站得更有舞台感',weights:[2,2,1,5,2]},
-        {label:'先考虑和搭档、队形怎样配合',weights:[2,1,2,3,5]}
-      ],[
-        {label:'即兴跟着音乐试出自己的感觉',weights:[5,2,2,3,1]},
-        {label:'用更大、更快的身体能量完成它',weights:[1,5,2,4,1]},
-        {label:'把动作拆开，直到每一拍都准确',weights:[2,2,5,2,2]},
-        {label:'把它跳成一个有情绪的故事片段',weights:[2,2,1,5,3]},
-        {label:'把它变成可以和大家分享的编舞',weights:[2,1,3,3,5]}
+    const RESPONSE_SETS={
+      life:[
+        [{label:'先听鼓点和贝斯，身体会不自觉跟着晃',weights:[5,1,1,2,2]},{label:'会被强烈的节奏和能量瞬间点燃',weights:[2,5,2,3,1]},{label:'更容易注意到声音里的精致细节',weights:[2,2,5,2,1]},{label:'会想象这首歌像一段有情绪的画面',weights:[2,2,1,5,2]},{label:'会立刻想到适合和朋友一起听或拍的视频',weights:[2,1,3,3,5]}],
+        [{label:'选节奏感最强、能让人自然动起来的歌',weights:[5,1,2,2,1]},{label:'选能量很满、适合释放情绪的歌',weights:[2,5,1,4,1]},{label:'选制作精细、层次丰富的歌',weights:[2,1,5,2,1]},{label:'选旋律或歌词特别有故事感的歌',weights:[2,1,1,5,2]},{label:'选适合多人一起唱跳、气氛热闹的歌',weights:[3,1,2,3,5]}],
+        [{label:'跟着节拍走路或轻轻点头',weights:[5,1,1,2,2]},{label:'忍不住加快步伐，感觉整个人有力量',weights:[2,5,1,3,1]},{label:'会在脑中拆解每个声音出现的位置',weights:[2,1,5,2,1]},{label:'会把音乐和当下心情连在一起',weights:[2,1,1,5,2]},{label:'想把这首歌分享给身边的人',weights:[3,1,2,3,5]}],
+        [{label:'持续的律动和舒服的节拍',weights:[5,2,1,2,1]},{label:'强烈的重拍和冲击感',weights:[2,5,1,3,1]},{label:'突然的停顿、转折或精巧编排',weights:[2,1,5,2,1]},{label:'能放大情绪的旋律推进',weights:[2,2,1,5,1]},{label:'大家都能一起投入的副歌',weights:[3,1,2,3,5]}],
+        [{label:'边走边听，感受城市和节奏混在一起',weights:[5,1,1,2,2]},{label:'去做一件能出汗、能释放的事',weights:[2,5,1,3,1]},{label:'戴上耳机安静观察周围的小细节',weights:[2,1,5,2,1]},{label:'拍一张有氛围感的照片记录心情',weights:[2,1,2,5,2]},{label:'约朋友见面、聊天或一起逛街',weights:[3,1,2,3,5]}]
+      ],
+      content:[
+        [{label:'会停在节奏很舒服、让人想跟着动的视频',weights:[5,1,1,2,2]},{label:'会停在动作力量感很强、冲击力十足的视频',weights:[2,5,2,3,1]},{label:'会停在细节干净、动作精准的视频',weights:[2,2,5,2,1]},{label:'会停在表情、服装和气场都很强的视频',weights:[2,1,2,5,2]},{label:'会停在多人整齐配合、画面很爽的视频',weights:[3,1,3,3,5]}],
+        [{label:'收藏让你反复听背景音乐的视频',weights:[5,1,2,2,1]},{label:'收藏看起来很难、很有爆发感的片段',weights:[1,5,3,2,1]},{label:'收藏可以放慢研究动作的片段',weights:[2,2,5,2,1]},{label:'收藏情绪饱满、很有角色感的片段',weights:[2,1,1,5,2]},{label:'收藏适合和朋友一起学的整段作品',weights:[3,1,3,3,5]}],
+        [{label:'注意音乐和动作是不是很贴合',weights:[5,1,2,2,1]},{label:'注意身体爆发和动作幅度',weights:[1,5,2,3,1]},{label:'注意动作有没有卡得很准、很干净',weights:[2,2,5,2,1]},{label:'注意镜头里的人有没有抓住你的眼神',weights:[2,1,1,5,2]},{label:'注意大家的队形和默契是否舒服',weights:[2,1,3,3,5]}],
+        [{label:'自然、有律动、不刻意的镜头',weights:[5,1,1,2,2]},{label:'速度快、能量强、让人热血的镜头',weights:[1,5,2,3,1]},{label:'构图清晰、动作细节看得清楚的镜头',weights:[2,1,5,2,1]},{label:'人物气质鲜明、很有故事感的镜头',weights:[2,1,1,5,2]},{label:'朋友们一起玩得很开心的镜头',weights:[3,1,2,3,5]}],
+        [{label:'找音乐很对胃口的创作者',weights:[5,1,2,2,1]},{label:'找能量感和身体素质很强的创作者',weights:[1,5,2,3,1]},{label:'找讲解细致、能学到方法的创作者',weights:[2,1,5,2,2]},{label:'找风格大胆、有个人表达的创作者',weights:[2,1,1,5,2]},{label:'找会和朋友、粉丝互动的创作者',weights:[3,1,2,3,5]}]
+      ],
+      style:[
+        [{label:'舒服好活动，穿上就想随着音乐走路',weights:[5,1,1,2,2]},{label:'轮廓有力量感，显得利落有攻击性',weights:[2,5,2,3,1]},{label:'剪裁、配色和细节都要很讲究',weights:[2,1,5,2,1]},{label:'有鲜明态度，能表达自己的心情',weights:[2,1,1,5,2]},{label:'和朋友穿在一起有整体感、适合合照',weights:[3,1,2,3,5]}],
+        [{label:'宽松舒适、有节奏感的休闲风',weights:[5,1,1,2,2]},{label:'运动感强、看起来很有能量的风格',weights:[2,5,2,3,1]},{label:'极简干净、线条和质感优先的风格',weights:[2,1,5,2,1]},{label:'大胆亮眼、带一点戏剧感的风格',weights:[2,1,1,5,2]},{label:'方便和朋友搭配、适合一起出镜的风格',weights:[3,1,2,3,5]}],
+        [{label:'选一张看起来很自然、有生活感的',weights:[5,1,1,2,2]},{label:'选一张姿态最有力量、最有张力的',weights:[2,5,2,3,1]},{label:'选一张构图和细节最干净的',weights:[2,1,5,2,1]},{label:'选一张表情和气氛最能代表自己的',weights:[2,1,1,5,2]},{label:'选一张大家互动最好、最有记忆点的',weights:[3,1,2,3,5]}],
+        [{label:'音乐氛围舒服、可以随时加入的地方',weights:[5,1,1,2,2]},{label:'能做运动或挑战、释放能量的地方',weights:[2,5,2,3,1]},{label:'安静有秩序、可以认真观察的地方',weights:[2,1,5,2,1]},{label:'有灯光和氛围、适合表达自我的地方',weights:[2,1,1,5,2]},{label:'适合一群朋友聊天、拍照和玩耍的地方',weights:[3,1,2,3,5]}],
+        [{label:'让人觉得自然、松弛、有节奏',weights:[5,1,1,2,2]},{label:'让人觉得强大、有冲劲',weights:[2,5,2,3,1]},{label:'让人觉得精致、可靠、有品位',weights:[2,1,5,2,1]},{label:'让人觉得有性格、有故事',weights:[2,1,1,5,2]},{label:'让人觉得好相处、值得一起玩',weights:[3,1,2,3,5]}]
+      ],
+      beginner:[
+        [{label:'先感受音乐，跟着大家自然动一动',weights:[5,1,1,2,2]},{label:'想试试更有挑战、能出汗的部分',weights:[2,5,2,3,1]},{label:'希望老师慢一点讲清楚动作细节',weights:[2,1,5,2,1]},{label:'期待把动作跳得更有自信和气场',weights:[2,1,1,5,2]},{label:'期待认识同学、一起完成一段作品',weights:[3,1,2,3,5]}],
+        [{label:'先模仿整体节奏，找到舒服的感觉',weights:[5,1,2,2,1]},{label:'先试着把动作做得更大、更有力量',weights:[1,5,2,3,1]},{label:'先把一个动作的角度和顺序弄准确',weights:[2,1,5,2,1]},{label:'先观察怎样跳会更有表情和状态',weights:[2,1,1,5,2]},{label:'先看大家如何同步、互相配合',weights:[3,1,2,3,5]}],
+        [{label:'有喜欢的音乐，可以慢慢跟着练',weights:[5,1,2,2,1]},{label:'能感觉自己身体越来越有力量',weights:[1,5,2,3,1]},{label:'能看到动作一点点变得清楚',weights:[2,1,5,2,1]},{label:'能更自信地在别人面前表达自己',weights:[2,1,1,5,2]},{label:'有伙伴陪伴、一起完成小目标',weights:[3,1,2,3,5]}],
+        [{label:'跟着音乐反复走节拍，身体更放松',weights:[5,1,2,2,1]},{label:'做一些能提升核心和耐力的练习',weights:[1,5,2,3,1]},{label:'把基础动作拆开，一步一步练',weights:[2,1,5,2,1]},{label:'对着镜子练习姿态和眼神',weights:[2,1,1,5,2]},{label:'和同学一起复习并互相提醒',weights:[3,1,2,3,5]}],
+        [{label:'先找音乐的节拍，做出自然反应',weights:[5,1,2,2,1]},{label:'用更有力量的身体方式完成它',weights:[1,5,2,3,1]},{label:'把动作放慢，找清楚每个位置',weights:[2,1,5,2,1]},{label:'想象它该带着怎样的情绪和态度',weights:[2,1,1,5,2]},{label:'把它变成适合和朋友一起跳的小组合',weights:[3,1,2,3,5]}]
+      ],
+      deeper:[
+        [{label:'用身体顺着音乐即兴回应',weights:[5,2,2,3,1]},{label:'用爆发和更大的动作把能量推上去',weights:[1,5,2,4,1]},{label:'用一个清楚、有控制感的动作留下记忆',weights:[2,2,5,2,1]},{label:'用表情、眼神和姿态带动情绪',weights:[2,1,1,5,2]},{label:'和伙伴完成一段默契的互动',weights:[3,1,2,3,5]}],
+        [{label:'持续探索不同音乐里的律动方式',weights:[5,1,2,2,1]},{label:'挑战身体力量、耐力和速度',weights:[1,5,2,3,1]},{label:'把基础和细节练得越来越扎实',weights:[2,1,5,2,1]},{label:'建立属于自己的风格和表达',weights:[2,1,1,5,2]},{label:'和朋友一起成长、完成作品',weights:[3,1,2,3,5]}],
+        [{label:'希望身体能更自然地听懂音乐',weights:[5,1,2,2,1]},{label:'希望拥有更强的身体能力和勇气',weights:[1,5,2,3,1]},{label:'希望动作越来越干净、越来越稳定',weights:[2,1,5,2,1]},{label:'希望敢于在镜头和人群前展现自己',weights:[2,1,1,5,2]},{label:'希望找到一起跳舞的圈子和伙伴',weights:[3,1,2,3,5]}],
+        [{label:'一首歌如何让身体自然动起来',weights:[5,1,2,2,1]},{label:'怎样把动作跳得更有力量和爆发',weights:[1,5,2,3,1]},{label:'怎样让一个动作又准又漂亮',weights:[2,1,5,2,1]},{label:'怎样把自己的情绪变成舞蹈',weights:[2,1,1,5,2]},{label:'怎样和别人一起完成一段作品',weights:[3,1,2,3,5]}],
+        [{label:'从最喜欢的音乐和律动开始',weights:[5,1,2,2,1]},{label:'从能带来身体挑战的课程开始',weights:[1,5,2,3,1]},{label:'从讲解清楚、基础扎实的课程开始',weights:[2,1,5,2,1]},{label:'从能帮你打开表达和自信的课程开始',weights:[2,1,1,5,2]},{label:'从适合和朋友一起学的课程开始',weights:[3,1,2,3,5]}]
       ]
+    };
+    const PHASES=[
+      {name:'生活节奏与音乐偏好',key:'life',questions:['平时戴上耳机听歌时，最容易让你停下来的是什么？','如果要为周末做一张歌单，你会优先放进哪类歌？','走在路上听到喜欢的歌时，你通常会？','在音乐节或派对里，哪种瞬间最容易让你投入？','一个人度过空闲下午时，你更想做什么？','朋友给你推荐一首新歌，你会先关注什么？','一首歌进入副歌时，什么最容易让你起鸡皮疙瘩？','你更喜欢哪一种听歌场景？','如果要用一首歌形容最近的自己，你会选什么感觉？','第一次听一张新专辑，你最期待发现什么？']},
+      {name:'短视频与内容审美',key:'content',questions:['刷短视频时，哪种舞蹈视频最容易让你停下来？','你更可能收藏哪种舞蹈片段？','看舞蹈博主的视频时，你最容易注意什么？','你喜欢怎样的舞蹈视频镜头和氛围？','如果关注一位舞蹈博主，你最看重什么？','朋友转来一段舞蹈视频，你希望它带给你什么感觉？','看到一段舞蹈反复播放，你想学会的是哪一部分？','你更愿意把哪类舞蹈视频转发给朋友？','如果拍一支自己的短视频，你最想呈现什么？','看完一支很厉害的舞蹈视频后，你最想做什么？']},
+      {name:'穿搭、气质与社交表达',key:'style',questions:['出门时，你最希望衣服给你什么感觉？','你更喜欢哪种日常穿衣风格？','和朋友合照时，你会选哪张作为封面？','周末和朋友见面，你最喜欢去什么样的地方？','你希望初次见面的人怎样形容你？','如果要为一场演出选穿搭，你最在意什么？','打开衣柜时，你最常拿起哪类单品？','朋友约你拍一组照片，你最想营造什么氛围？','在一群人里，你更舒服的状态是什么？','你愿意因为一件衣服尝试怎样的新体验？']},
+      {name:'第一次进入舞室',key:'beginner',questions:['第一次走进舞室公开课，你最期待什么？','老师示范一段新动作时，你会先看什么？','如果一节课有点跟不上，你希望怎么继续？','你觉得初学跳舞最有成就感的是什么？','练习前只有 15 分钟热身时间，你会怎么安排？','课后想复习时，你更想怎么做？','如果同学邀请你一起练舞，你最期待什么？','第一次录下自己跳舞的视频，你最会关注什么？','一个动作学不会时，你会先怎么处理？','如果下周继续上课，你最希望老师多带你练什么？']},
+      {name:'更深入的舞蹈选择',key:'deeper',questions:['音乐突然变强时，你最想怎样回应？','如果持续学舞三个月，你最希望收获什么？','第一次在小型活动上表演，你最想突破什么？','你最想从舞蹈里学会什么能力？','完成这份测试后，你最希望怎样开始自己的第一节课？','面对一首陌生音乐，你最愿意先尝试什么？','如果朋友邀请你参加舞蹈活动，你最期待什么？','练习了一段时间后，你最想看见自己哪种变化？','你觉得最有吸引力的舞台瞬间是什么？','一年后的你，希望舞蹈在生活里是什么样的存在？']}
     ];
-    const SCENARIOS=[
-      '第一次听到一首节奏很强的新歌时，你通常会？','老师放慢动作示范一个新组合时，你最先注意什么？','练习只剩 20 分钟时，你会把时间留给什么？','音乐突然停顿一下，你最想怎么回应？','朋友邀请你参加一场即兴 Jam，你最期待什么？',
-      '面对一个难度很高的动作，你的第一反应是？','跳完一段舞后，你最希望别人记住什么？','如果要为自己选一套训练计划，你会优先安排什么？','看一支很厉害的舞蹈视频时，你最容易反复回看什么？','一首歌的副歌到来时，你最想怎样处理？',
-      '排练时队友动作不整齐，你会先做什么？','镜子里的自己和想象中不一样时，你最想调整什么？','如果音乐换成更快的节拍，你会先改变什么？','参加第一次舞室公开课，你最想从中获得什么？','朋友让你带一段简单动作时，你会设计什么样的内容？',
-      '遇到陌生舞者向你发起 Battle，你会先展现什么？','练习基础时，你觉得最值得反复打磨的部分是？','演出前最后一次彩排，你最在意哪件事？','一段音乐里出现明显的重拍时，你会倾向于？','如果舞室举行团队作品比赛，你最想承担什么角色？',
-      '你在舞池里感到最自由的时刻通常是？','需要连续练习一个小时，你最能坚持哪种方式？','一个动作总是跳得不够好看，你会怎么解决？','站到人群中央时，你希望传递什么？','新朋友邀请你一起录一支舞蹈视频，你最期待什么？',
-      '面对一首节奏复杂的歌，你会从哪里开始理解？','身体有些疲惫但仍想练舞时，你会选择什么？','一个动作需要手、肩、胸分开配合时，你会怎么练？','看见很有戏剧张力的表演时，你最想学到什么？','一段团体编舞里，你最享受什么部分？',
-      '如果只能选一种方式认识新舞种，你会选？','音乐从轻柔逐渐变得强烈时，你会怎样变化？','练习视频回放时，你最会检查什么？','在现场被点名表演 30 秒时，你会怎么开始？','和一群陌生人一起上课时，什么最能让你投入？',
-      '一次 Battle 结束后，你最愿意复盘什么？','为了下次表演更好，你最想提升什么？','学一段动作学不会时，你会优先尝试什么？','如果舞蹈可以表达一种态度，你会选择怎样表达？','朋友说要一起报名舞蹈活动，你最在乎什么？',
-      '听见一段熟悉音乐时，你的身体最先有什么反应？','你觉得跳舞带来的成就感最接近哪一种？','看到别人完成一个极其干净的动作时，你最佩服什么？','你会为了哪一种舞台瞬间感到热血？','你更愿意把练舞时间花在什么样的氛围里？',
-      '如果明天就要上台，你今晚会怎样准备？','你希望自己的舞蹈和音乐呈现什么关系？','当一段动作速度越来越快时，你会追求什么？','当观众的目光集中到你身上时，你会怎么做？','完成测试后，你最希望找到怎样的学习起点？'
-    ];
-    const QUESTIONS=SCENARIOS.map((text,i)=>({id:'scene-'+i,text,options:RESPONSE_SETS[i%RESPONSE_SETS.length]}));
+    const QUESTIONS=PHASES.flatMap((phase,phaseIndex)=>phase.questions.map((text,index)=>({id:`${phase.key}-${index}`,text,options:RESPONSE_SETS[phase.key][index%RESPONSE_SETS[phase.key].length],phase:phase.name})));
     const TOTAL_QUESTIONS=QUESTIONS.length;
     const PAGE_SIZE=5;
     const STYLES=[
@@ -95,8 +94,8 @@
     ];
     const state={page:0,answers:{}};
     const intro=document.getElementById('intro'),quizPanel=document.getElementById('quizPanel'),resultPanel=document.getElementById('resultPanel'),form=document.getElementById('quizForm');
-    function persist(){try{sessionStorage.setItem('streetLabDanceTest',JSON.stringify({version:2,...state}))}catch(e){}}
-    function restore(){try{const saved=JSON.parse(sessionStorage.getItem('streetLabDanceTest'));if(saved&&saved.version===2&&saved.answers){state.page=saved.page||0;state.answers=saved.answers;}}catch(e){}}
+    function persist(){try{sessionStorage.setItem('streetLabDanceTest',JSON.stringify({version:3,...state}))}catch(e){}}
+    function restore(){try{const saved=JSON.parse(sessionStorage.getItem('streetLabDanceTest'));if(saved&&saved.version===3&&saved.answers){state.page=saved.page||0;state.answers=saved.answers;}}catch(e){}}
     function renderPage(){const start=state.page*PAGE_SIZE,items=QUESTIONS.slice(start,start+PAGE_SIZE);document.getElementById('quizTitle').textContent=`第 ${start+1}–${Math.min(start+PAGE_SIZE,TOTAL_QUESTIONS)} 题`;document.getElementById('progressText').textContent=`${start+1} / ${TOTAL_QUESTIONS}`;document.getElementById('progressFill').style.width=`${start/TOTAL_QUESTIONS*100}%`;form.innerHTML=items.map((q,i)=>`<fieldset class="question"><legend>${start+i+1}. ${q.text}</legend><div class="options">${q.options.map((option,index)=>`<label class="option"><input type="radio" name="${q.id}" value="${index}" ${state.answers[q.id]===index?'checked':''}><span>${option.label}</span></label>`).join('')}</div></fieldset>`).join('');document.getElementById('prevButton').disabled=state.page===0;document.getElementById('nextButton').textContent=state.page===Math.ceil(TOTAL_QUESTIONS/PAGE_SIZE)-1?'查看结果 →':'下一组 →';document.getElementById('errorMessage').textContent='';}
     function savePageAnswers(){const items=QUESTIONS.slice(state.page*PAGE_SIZE,state.page*PAGE_SIZE+PAGE_SIZE);for(const q of items){const picked=form.querySelector(`input[name="${q.id}"]:checked`);if(!picked){document.getElementById('errorMessage').textContent='请完成本组全部问题后再继续。';form.querySelector(`input[name="${q.id}"]`).focus();return false}state.answers[q.id]=Number(picked.value)}persist();return true}
     function calculate(){const totals=Array(5).fill(0),minimums=Array(5).fill(0),maximums=Array(5).fill(0);QUESTIONS.forEach(q=>{q.options[state.answers[q.id]].weights.forEach((value,i)=>{totals[i]+=value});for(let i=0;i<5;i++){const values=q.options.map(option=>option.weights[i]);minimums[i]+=Math.min(...values);maximums[i]+=Math.max(...values)}});return totals.map((value,i)=>Math.round((value-minimums[i])/Math.max(1,maximums[i]-minimums[i])*100))}
