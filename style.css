@@ -72,7 +72,7 @@ img { max-width: 100%; display: block; }
 .hamburger {
   width: 28px;
   height: 20px;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
@@ -193,31 +193,20 @@ img { max-width: 100%; display: block; }
   color: var(--red);
 }
 
-/* ========== TEST CTA ========== */
-.test-cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 28px var(--side-padding);
-  background: var(--gray-100);
-  border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
+/* ========== TEST SECTION ========== */
+.test-section {
+  padding: 80px var(--side-padding);
 }
-.test-cta p {
-  margin: 0;
-  font-size: 15px;
+.test-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+.test-content p {
   color: var(--gray-600);
-}
-.test-cta a {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--red);
-  letter-spacing: 0.5px;
-  transition: color .2s;
-}
-.test-cta a:hover {
-  color: var(--black);
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 28px;
 }
 
 /* ========== FOOTER ========== */

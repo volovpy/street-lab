@@ -83,7 +83,7 @@
     .hamburger {
       width: 28px;
       height: 20px;
-      display: flex;
+      display: none;
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
@@ -1001,11 +1001,8 @@
         grid-template-columns: 1fr;
       }
 
-      .test-cta {
-        flex-direction: column;
-        gap: 12px;
-        padding: 24px;
-        text-align: center;
+      .test-section {
+        padding: 60px 24px;
       }
 
       .hamburger { display: flex; }
@@ -1300,11 +1297,17 @@
     </div>
   </section>
 
-  <!-- ========== 舞种测试 CTA ========== -->
-  <div class="test-cta animate-in">
-    <p>还不知道自己适合哪个舞种？</p>
-    <a href="dance-test.html">开始舞种测试 →</a>
-  </div>
+  <!-- ========== 舞种测试 SECTION ========== -->
+  <section class="test-section" id="test">
+    <div class="section-header animate-in">
+      <h2>舞种测试</h2>
+      <p>5 分钟，找到最适合你的舞蹈方向</p>
+    </div>
+    <div class="test-content animate-in">
+      <p>从音乐偏好、视频审美到穿搭风格，30 道问题帮你生成五维舞蹈画像，获得个性化舞种推荐。</p>
+      <a href="dance-test.html" class="primary-button">开始测试 →</a>
+    </div>
+  </section>
 
   <!-- ========== 学习建议 SECTION ========== -->
   <section class="courses-section" id="learn">
