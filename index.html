@@ -83,7 +83,7 @@
     .hamburger {
       width: 28px;
       height: 20px;
-      display: none;
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
@@ -800,7 +800,40 @@
 
     /* ========== MOBILE MENU ========== */
     .mobile-menu {
-      display: none;
+      display: flex;
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      width: 200px;
+      background: var(--white);
+      z-index: 999;
+      flex-direction: column;
+      padding: 8px 0;
+      box-shadow: 0 8px 30px rgba(0,0,0,.12);
+      border-top: 1px solid var(--gray-200);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .2s, transform .2s;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      padding: 10px 20px;
+      transition: background .15s, color .15s;
+    }
+
+    .mobile-menu a:hover {
+      background: var(--gray-100);
+      color: var(--red);
     }
 
     /* ========== ANIMATIONS ========== */
@@ -1004,42 +1037,11 @@
       .test-section {
         padding: 60px 24px;
       }
+      .test-grid {
+        grid-template-columns: 1fr;
+      }
 
-      .hamburger { display: flex; }
       .nav-links { display: none; }
-      .mobile-menu {
-        display: flex;
-        position: fixed;
-        top: var(--nav-height);
-        left: 0;
-        width: 200px;
-        background: var(--white);
-        z-index: 999;
-        flex-direction: column;
-        padding: 8px 0;
-        box-shadow: 0 8px 30px rgba(0,0,0,.12);
-        border-top: 1px solid var(--gray-200);
-        opacity: 0;
-        pointer-events: none;
-        transform: translateY(-8px);
-        transition: opacity .2s, transform .2s;
-      }
-      .mobile-menu.open {
-        opacity: 1;
-        pointer-events: all;
-        transform: translateY(0);
-      }
-      .mobile-menu a {
-        font-size: 14px;
-        font-weight: 500;
-        color: var(--black);
-        padding: 10px 20px;
-        transition: background .15s, color .15s;
-      }
-      .mobile-menu a:hover {
-        background: var(--gray-100);
-        color: var(--red);
-      }
     }
 
     @media (max-width: 480px) {
@@ -1303,9 +1305,17 @@
       <h2>舞种测试</h2>
       <p>5 分钟，找到最适合你的舞蹈方向</p>
     </div>
-    <div class="test-content animate-in">
-      <p>从音乐偏好、视频审美到穿搭风格，30 道问题帮你生成五维舞蹈画像，获得个性化舞种推荐。</p>
-      <a href="dance-test.html" class="primary-button">开始测试 →</a>
+    <div class="test-grid animate-in">
+      <div class="test-card">
+        <span class="test-tag">个性化推荐</span>
+        <h3>找到你的舞种</h3>
+        <p>从音乐偏好、视频审美到穿搭风格，30 道问题帮你生成五维舞蹈画像。</p>
+        <div class="test-meta">
+          <span>约 5 分钟</span>
+          <span>30 道题</span>
+        </div>
+        <a href="dance-test.html" class="primary-button">开始测试 →</a>
+      </div>
     </div>
   </section>
 
