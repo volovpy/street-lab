@@ -1034,6 +1034,22 @@
       .contact-grid {
         grid-template-columns: 1fr;
       }
+
+      .test-promo {
+        padding: 60px 24px;
+      }
+      .test-promo-inner {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+      }
+      .test-promo-text p {
+        max-width: 100%;
+      }
+      .test-promo-radar {
+        width: 140px;
+        height: 140px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1287,6 +1303,26 @@
       <div class="about-text animate-in">
         <p style="font-size:18px; line-height:1.8; color:var(--gray-400);">「街舞是身体的语言，节奏是我们的母语。」</p>
         <p style="font-size:14px; color:var(--gray-400); margin-top:16px;">从洛杉矶到纽约，从首尔到东京——Street Lab 汇聚全球六大核心舞种，带你从根源理解每一寸律动。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 舞种测试 SECTION ========== -->
+  <section class="test-promo" id="test">
+    <div class="test-promo-inner animate-in">
+      <div class="test-promo-text">
+        <p class="eyebrow">STREET LAB / DANCE PROFILE</p>
+        <h2>找到适合你的舞种</h2>
+        <p>30 道问题，6 个维度，5 分钟完成。从音乐偏好、视频审美到穿搭风格，帮你找到最匹配的舞蹈方向。</p>
+        <a href="dance-test.html" class="primary-button">开始测试 →</a>
+      </div>
+      <div class="test-promo-visual">
+        <div class="test-promo-radar">
+          <svg viewBox="0 0 200 200">
+            <polygon points="100,20 176,65 152,150 48,150 24,65" fill="none" stroke="#e5e5e5" stroke-width="1.5"/>
+            <polygon points="100,35 160,70 140,140 60,140 40,70" fill="rgba(200,75,49,.15)" stroke="#c84b31" stroke-width="2"/>
+          </svg>
+        </div>
       </div>
     </div>
   </section>

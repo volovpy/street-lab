@@ -170,21 +170,7 @@ img { max-width: 100%; display: block; }
 
 /* ========== MOBILE MENU ========== */
 .mobile-menu {
-  position: fixed;
-  top: var(--nav-height);
-  right: 0;
-  width: 220px;
-  background: var(--white);
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  padding: 16px 0;
-  box-shadow: 0 8px 30px rgba(0,0,0,.12);
-  border-top: 1px solid var(--gray-200);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-8px);
-  transition: opacity .2s, transform .2s;
+  display: none;
 }
 
 .mobile-menu.open {
@@ -205,6 +191,54 @@ img { max-width: 100%; display: block; }
 .mobile-menu a:hover {
   background: var(--gray-100);
   color: var(--red);
+}
+
+/* ========== TEST PROMO ========== */
+.test-promo {
+  padding: 80px var(--side-padding);
+  background: var(--black);
+  color: var(--white);
+}
+.test-promo-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+.test-promo-text {
+  flex: 1;
+}
+.test-promo-text .eyebrow {
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin: 0 0 16px;
+}
+.test-promo-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 48px);
+  margin: 0 0 16px;
+  letter-spacing: 1px;
+}
+.test-promo-text p {
+  color: var(--gray-400);
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 0 0 28px;
+  max-width: 480px;
+}
+.test-promo-visual {
+  flex-shrink: 0;
+}
+.test-promo-radar {
+  width: 180px;
+  height: 180px;
+}
+.test-promo-radar svg {
+  width: 100%;
+  height: auto;
 }
 
 /* ========== FOOTER ========== */
@@ -798,6 +832,41 @@ img { max-width: 100%; display: block; }
   .moves-grid { grid-template-columns: 1fr; }
   .move-detail-panel { padding: 28px; }
   .move-detail-section .criteria-grid { grid-template-columns: 1fr; }
+  .hamburger { display: flex; }
+  .nav-links { display: none; }
+  .mobile-menu {
+    display: flex;
+    position: fixed;
+    top: var(--nav-height);
+    left: 0;
+    width: 200px;
+    background: var(--white);
+    z-index: 999;
+    flex-direction: column;
+    padding: 8px 0;
+    box-shadow: 0 8px 30px rgba(0,0,0,.12);
+    border-top: 1px solid var(--gray-200);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition: opacity .2s, transform .2s;
+  }
+  .mobile-menu.open {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+  .mobile-menu a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+    padding: 10px 20px;
+    transition: background .15s, color .15s;
+  }
+  .mobile-menu a:hover {
+    background: var(--gray-100);
+    color: var(--red);
+  }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
