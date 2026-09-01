@@ -798,40 +798,42 @@
       fill: var(--white);
     }
 
-    /* ========== MOBILE OVERLAY ========== */
+    /* ========== MOBILE MENU ========== */
     .mobile-menu {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: var(--nav-height);
+      right: 0;
+      width: 220px;
       background: var(--white);
       z-index: 999;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 36px;
+      padding: 16px 0;
+      box-shadow: 0 8px 30px rgba(0,0,0,.12);
+      border-top: 1px solid var(--gray-200);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.35s ease;
+      transform: translateY(-8px);
+      transition: opacity .2s, transform .2s;
     }
 
     .mobile-menu.open {
       opacity: 1;
       pointer-events: all;
+      transform: translateY(0);
     }
 
     .mobile-menu a {
       font-family: var(--font-body);
-      font-size: 48px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 500;
       color: var(--black);
-      letter-spacing: 2px;
-      transition: color 0.2s;
+      padding: 10px 24px;
+      transition: background .15s, color .15s;
     }
 
     .mobile-menu a:hover {
+      background: var(--gray-100);
       color: var(--red);
     }
 
@@ -1107,14 +1109,8 @@
     </div>
   </nav>
 
-  <!-- ========== MOBILE MENU OVERLAY ========== -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#about">关于我们</a>
-    <a href="dance-test.html">舞种测试</a>
-    <a href="#learn">学习建议</a>
-    <a href="#comp">经典大赛</a>
-    <a href="#contact">联系</a>
-  </div>
+  <!-- ========== MOBILE MENU ========== -->
+  <div class="mobile-menu" id="mobileMenu"><a href="breaking.html">Breaking</a><a href="popping.html">Popping</a><a href="locking.html">Locking</a><a href="hiphop.html">Hip Hop</a><a href="waacking.html">Waacking</a><a href="krump.html">Krump</a><a href="house.html">House</a><a href="jazz.html">Jazz</a><a href="kpop.html">K-Pop</a></div>
 
   <!-- ========== HERO SECTION ========== -->
   <section class="hero">
