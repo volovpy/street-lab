@@ -271,6 +271,24 @@
       font-size: 16px;
     }
 
+    .hero-test-link {
+      display: inline-flex;
+      align-items: center;
+      margin-top: 28px;
+      padding: 13px 20px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-test-link:hover {
+      background: var(--red);
+      transform: translateY(-2px);
+    }
+
     /* ========== STYLES SECTION ========== */
     .styles-section {
       padding: 80px var(--side-padding) 100px;
@@ -1064,6 +1082,7 @@
       <div class="nav-links">
         <a href="#" class="active">首页</a>
         <a href="#about">关于我们</a>
+        <a href="dance-test.html">舞种测试</a>
         <a href="#learn">学习建议</a>
         <a href="#comp">经典大赛</a>
         <a href="#contact">联系</a>
@@ -1091,6 +1110,7 @@
   <!-- ========== MOBILE MENU OVERLAY ========== -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about">关于我们</a>
+    <a href="dance-test.html">舞种测试</a>
     <a href="#learn">学习建议</a>
     <a href="#comp">经典大赛</a>
     <a href="#contact">联系</a>
@@ -1107,6 +1127,7 @@
         <div class="line2">LAB</div>
       </div>
       <p class="hero-tagline">律动 <span class="dot">•</span> 表达 <span class="dot">•</span> 点燃</p>
+      <a class="hero-test-link" href="dance-test.html">开始舞种测试 →</a>
     </div>
   </section>
 
