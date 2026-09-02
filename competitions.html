@@ -136,5 +136,6 @@
     var hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');hamburger.addEventListener('click',function(){hamburger.classList.toggle('active');mobileMenu.classList.toggle('open');document.body.style.overflow=mobileMenu.classList.contains('open')?'hidden':''});mobileMenu.querySelectorAll('a').forEach(function(l){l.addEventListener('click',function(){hamburger.classList.remove('active');mobileMenu.classList.remove('open');document.body.style.overflow=''})});
     var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:0.15,rootMargin:'0px 0px -50px 0px'});document.querySelectorAll('.animate-in').forEach(function(el){observer.observe(el)});
   </script>
+  <script src="back-to-home.js"></script>
 </body>
 </html>

@@ -120,5 +120,6 @@
     document.getElementById('restartButton').addEventListener('click',()=>{state.page=0;state.answers={};try{sessionStorage.removeItem('streetLabDanceTest');sessionStorage.removeItem('streetLabDanceResult')}catch(e){}resultPanel.classList.remove('active');intro.style.display='block';window.scrollTo({top:0,behavior:'smooth'})});
     const hamburger=document.getElementById('hamburger'),mobileMenu=document.getElementById('mobileMenu');function toggleMenu(){const open=mobileMenu.classList.toggle('open');hamburger.setAttribute('aria-expanded',open);document.body.style.overflow=open?'hidden':''}hamburger.addEventListener('click',toggleMenu);hamburger.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleMenu()}});mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileMenu.classList.remove('open');document.body.style.overflow=''}));restore();
   </script>
+  <script src="back-to-home.js"></script>
 </body>
 </html>
